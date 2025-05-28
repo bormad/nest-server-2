@@ -2445,19 +2445,30 @@ export namespace Prisma {
     id: string | null
     price: number | null
     companyId: string | null
+    departure: string | null
+    destination: string | null
+    departureAt: Date | null
+    arrivalAt: Date | null
   }
 
   export type FlightMaxAggregateOutputType = {
     id: string | null
     price: number | null
     companyId: string | null
+    departure: string | null
+    destination: string | null
+    departureAt: Date | null
+    arrivalAt: Date | null
   }
 
   export type FlightCountAggregateOutputType = {
     id: number
     price: number
     companyId: number
-    info: number
+    departure: number
+    destination: number
+    departureAt: number
+    arrivalAt: number
     _all: number
   }
 
@@ -2474,19 +2485,30 @@ export namespace Prisma {
     id?: true
     price?: true
     companyId?: true
+    departure?: true
+    destination?: true
+    departureAt?: true
+    arrivalAt?: true
   }
 
   export type FlightMaxAggregateInputType = {
     id?: true
     price?: true
     companyId?: true
+    departure?: true
+    destination?: true
+    departureAt?: true
+    arrivalAt?: true
   }
 
   export type FlightCountAggregateInputType = {
     id?: true
     price?: true
     companyId?: true
-    info?: true
+    departure?: true
+    destination?: true
+    departureAt?: true
+    arrivalAt?: true
     _all?: true
   }
 
@@ -2580,7 +2602,10 @@ export namespace Prisma {
     id: string
     price: number
     companyId: string
-    info: JsonValue
+    departure: string
+    destination: string
+    departureAt: Date
+    arrivalAt: Date
     _count: FlightCountAggregateOutputType | null
     _avg: FlightAvgAggregateOutputType | null
     _sum: FlightSumAggregateOutputType | null
@@ -2606,9 +2631,12 @@ export namespace Prisma {
     id?: boolean
     price?: boolean
     companyId?: boolean
-    info?: boolean
-    passengers?: boolean | Flight$passengersArgs<ExtArgs>
+    departure?: boolean
+    destination?: boolean
+    departureAt?: boolean
+    arrivalAt?: boolean
     company?: boolean | CompanyDefaultArgs<ExtArgs>
+    passengers?: boolean | Flight$passengersArgs<ExtArgs>
     _count?: boolean | FlightCountOutputTypeDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["flight"]>
 
@@ -2616,7 +2644,10 @@ export namespace Prisma {
     id?: boolean
     price?: boolean
     companyId?: boolean
-    info?: boolean
+    departure?: boolean
+    destination?: boolean
+    departureAt?: boolean
+    arrivalAt?: boolean
     company?: boolean | CompanyDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["flight"]>
 
@@ -2624,7 +2655,10 @@ export namespace Prisma {
     id?: boolean
     price?: boolean
     companyId?: boolean
-    info?: boolean
+    departure?: boolean
+    destination?: boolean
+    departureAt?: boolean
+    arrivalAt?: boolean
     company?: boolean | CompanyDefaultArgs<ExtArgs>
   }, ExtArgs["result"]["flight"]>
 
@@ -2632,13 +2666,16 @@ export namespace Prisma {
     id?: boolean
     price?: boolean
     companyId?: boolean
-    info?: boolean
+    departure?: boolean
+    destination?: boolean
+    departureAt?: boolean
+    arrivalAt?: boolean
   }
 
-  export type FlightOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "price" | "companyId" | "info", ExtArgs["result"]["flight"]>
+  export type FlightOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "price" | "companyId" | "departure" | "destination" | "departureAt" | "arrivalAt", ExtArgs["result"]["flight"]>
   export type FlightInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
-    passengers?: boolean | Flight$passengersArgs<ExtArgs>
     company?: boolean | CompanyDefaultArgs<ExtArgs>
+    passengers?: boolean | Flight$passengersArgs<ExtArgs>
     _count?: boolean | FlightCountOutputTypeDefaultArgs<ExtArgs>
   }
   export type FlightIncludeCreateManyAndReturn<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
@@ -2651,14 +2688,17 @@ export namespace Prisma {
   export type $FlightPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Flight"
     objects: {
-      passengers: Prisma.$UserPayload<ExtArgs>[]
       company: Prisma.$CompanyPayload<ExtArgs>
+      passengers: Prisma.$UserPayload<ExtArgs>[]
     }
     scalars: $Extensions.GetPayloadResult<{
       id: string
       price: number
       companyId: string
-      info: Prisma.JsonValue
+      departure: string
+      destination: string
+      departureAt: Date
+      arrivalAt: Date
     }, ExtArgs["result"]["flight"]>
     composites: {}
   }
@@ -3053,8 +3093,8 @@ export namespace Prisma {
    */
   export interface Prisma__FlightClient<T, Null = never, ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs, GlobalOmitOptions = {}> extends Prisma.PrismaPromise<T> {
     readonly [Symbol.toStringTag]: "PrismaPromise"
-    passengers<T extends Flight$passengersArgs<ExtArgs> = {}>(args?: Subset<T, Flight$passengersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     company<T extends CompanyDefaultArgs<ExtArgs> = {}>(args?: Subset<T, CompanyDefaultArgs<ExtArgs>>): Prisma__CompanyClient<$Result.GetResult<Prisma.$CompanyPayload<ExtArgs>, T, "findUniqueOrThrow", GlobalOmitOptions> | Null, Null, ExtArgs, GlobalOmitOptions>
+    passengers<T extends Flight$passengersArgs<ExtArgs> = {}>(args?: Subset<T, Flight$passengersArgs<ExtArgs>>): Prisma.PrismaPromise<$Result.GetResult<Prisma.$UserPayload<ExtArgs>, T, "findMany", GlobalOmitOptions> | Null>
     /**
      * Attaches callbacks for the resolution and/or rejection of the Promise.
      * @param onfulfilled The callback to execute when the Promise is resolved.
@@ -3087,7 +3127,10 @@ export namespace Prisma {
     readonly id: FieldRef<"Flight", 'String'>
     readonly price: FieldRef<"Flight", 'Int'>
     readonly companyId: FieldRef<"Flight", 'String'>
-    readonly info: FieldRef<"Flight", 'Json'>
+    readonly departure: FieldRef<"Flight", 'String'>
+    readonly destination: FieldRef<"Flight", 'String'>
+    readonly departureAt: FieldRef<"Flight", 'DateTime'>
+    readonly arrivalAt: FieldRef<"Flight", 'DateTime'>
   }
     
 
@@ -6900,7 +6943,10 @@ export namespace Prisma {
     id: 'id',
     price: 'price',
     companyId: 'companyId',
-    info: 'info'
+    departure: 'departure',
+    destination: 'destination',
+    departureAt: 'departureAt',
+    arrivalAt: 'arrivalAt'
   };
 
   export type FlightScalarFieldEnum = (typeof FlightScalarFieldEnum)[keyof typeof FlightScalarFieldEnum]
@@ -6958,28 +7004,12 @@ export namespace Prisma {
   export type SortOrder = (typeof SortOrder)[keyof typeof SortOrder]
 
 
-  export const JsonNullValueInput: {
-    JsonNull: typeof JsonNull
-  };
-
-  export type JsonNullValueInput = (typeof JsonNullValueInput)[keyof typeof JsonNullValueInput]
-
-
   export const QueryMode: {
     default: 'default',
     insensitive: 'insensitive'
   };
 
   export type QueryMode = (typeof QueryMode)[keyof typeof QueryMode]
-
-
-  export const JsonNullValueFilter: {
-    DbNull: typeof DbNull,
-    JsonNull: typeof JsonNull,
-    AnyNull: typeof AnyNull
-  };
-
-  export type JsonNullValueFilter = (typeof JsonNullValueFilter)[keyof typeof JsonNullValueFilter]
 
 
   export const NullsOrder: {
@@ -7024,16 +7054,16 @@ export namespace Prisma {
 
 
   /**
-   * Reference to a field of type 'Json'
+   * Reference to a field of type 'DateTime'
    */
-  export type JsonFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'Json'>
+  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
     
 
 
   /**
-   * Reference to a field of type 'QueryMode'
+   * Reference to a field of type 'DateTime[]'
    */
-  export type EnumQueryModeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'QueryMode'>
+  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
     
 
 
@@ -7069,20 +7099,6 @@ export namespace Prisma {
    * Reference to a field of type 'AuthMethod[]'
    */
   export type ListEnumAuthMethodFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'AuthMethod[]'>
-    
-
-
-  /**
-   * Reference to a field of type 'DateTime'
-   */
-  export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
-    
-
-
-  /**
-   * Reference to a field of type 'DateTime[]'
-   */
-  export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
     
 
 
@@ -7169,18 +7185,24 @@ export namespace Prisma {
     id?: StringFilter<"Flight"> | string
     price?: IntFilter<"Flight"> | number
     companyId?: StringFilter<"Flight"> | string
-    info?: JsonFilter<"Flight">
-    passengers?: UserListRelationFilter
+    departure?: StringFilter<"Flight"> | string
+    destination?: StringFilter<"Flight"> | string
+    departureAt?: DateTimeFilter<"Flight"> | Date | string
+    arrivalAt?: DateTimeFilter<"Flight"> | Date | string
     company?: XOR<CompanyScalarRelationFilter, CompanyWhereInput>
+    passengers?: UserListRelationFilter
   }
 
   export type FlightOrderByWithRelationInput = {
     id?: SortOrder
     price?: SortOrder
     companyId?: SortOrder
-    info?: SortOrder
-    passengers?: UserOrderByRelationAggregateInput
+    departure?: SortOrder
+    destination?: SortOrder
+    departureAt?: SortOrder
+    arrivalAt?: SortOrder
     company?: CompanyOrderByWithRelationInput
+    passengers?: UserOrderByRelationAggregateInput
   }
 
   export type FlightWhereUniqueInput = Prisma.AtLeast<{
@@ -7190,16 +7212,22 @@ export namespace Prisma {
     NOT?: FlightWhereInput | FlightWhereInput[]
     price?: IntFilter<"Flight"> | number
     companyId?: StringFilter<"Flight"> | string
-    info?: JsonFilter<"Flight">
-    passengers?: UserListRelationFilter
+    departure?: StringFilter<"Flight"> | string
+    destination?: StringFilter<"Flight"> | string
+    departureAt?: DateTimeFilter<"Flight"> | Date | string
+    arrivalAt?: DateTimeFilter<"Flight"> | Date | string
     company?: XOR<CompanyScalarRelationFilter, CompanyWhereInput>
+    passengers?: UserListRelationFilter
   }, "id">
 
   export type FlightOrderByWithAggregationInput = {
     id?: SortOrder
     price?: SortOrder
     companyId?: SortOrder
-    info?: SortOrder
+    departure?: SortOrder
+    destination?: SortOrder
+    departureAt?: SortOrder
+    arrivalAt?: SortOrder
     _count?: FlightCountOrderByAggregateInput
     _avg?: FlightAvgOrderByAggregateInput
     _max?: FlightMaxOrderByAggregateInput
@@ -7214,7 +7242,10 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Flight"> | string
     price?: IntWithAggregatesFilter<"Flight"> | number
     companyId?: StringWithAggregatesFilter<"Flight"> | string
-    info?: JsonWithAggregatesFilter<"Flight">
+    departure?: StringWithAggregatesFilter<"Flight"> | string
+    destination?: StringWithAggregatesFilter<"Flight"> | string
+    departureAt?: DateTimeWithAggregatesFilter<"Flight"> | Date | string
+    arrivalAt?: DateTimeWithAggregatesFilter<"Flight"> | Date | string
   }
 
   export type UserWhereInput = {
@@ -7488,32 +7519,44 @@ export namespace Prisma {
   export type FlightCreateInput = {
     id?: string
     price: number
-    info: JsonNullValueInput | InputJsonValue
-    passengers?: UserCreateNestedManyWithoutFlightsInput
+    departure: string
+    destination: string
+    departureAt: Date | string
+    arrivalAt: Date | string
     company: CompanyCreateNestedOneWithoutFlightsInput
+    passengers?: UserCreateNestedManyWithoutFlightsInput
   }
 
   export type FlightUncheckedCreateInput = {
     id?: string
     price: number
     companyId: string
-    info: JsonNullValueInput | InputJsonValue
+    departure: string
+    destination: string
+    departureAt: Date | string
+    arrivalAt: Date | string
     passengers?: UserUncheckedCreateNestedManyWithoutFlightsInput
   }
 
   export type FlightUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     price?: IntFieldUpdateOperationsInput | number
-    info?: JsonNullValueInput | InputJsonValue
-    passengers?: UserUpdateManyWithoutFlightsNestedInput
+    departure?: StringFieldUpdateOperationsInput | string
+    destination?: StringFieldUpdateOperationsInput | string
+    departureAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    arrivalAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: CompanyUpdateOneRequiredWithoutFlightsNestedInput
+    passengers?: UserUpdateManyWithoutFlightsNestedInput
   }
 
   export type FlightUncheckedUpdateInput = {
     id?: StringFieldUpdateOperationsInput | string
     price?: IntFieldUpdateOperationsInput | number
     companyId?: StringFieldUpdateOperationsInput | string
-    info?: JsonNullValueInput | InputJsonValue
+    departure?: StringFieldUpdateOperationsInput | string
+    destination?: StringFieldUpdateOperationsInput | string
+    departureAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    arrivalAt?: DateTimeFieldUpdateOperationsInput | Date | string
     passengers?: UserUncheckedUpdateManyWithoutFlightsNestedInput
   }
 
@@ -7521,20 +7564,29 @@ export namespace Prisma {
     id?: string
     price: number
     companyId: string
-    info: JsonNullValueInput | InputJsonValue
+    departure: string
+    destination: string
+    departureAt: Date | string
+    arrivalAt: Date | string
   }
 
   export type FlightUpdateManyMutationInput = {
     id?: StringFieldUpdateOperationsInput | string
     price?: IntFieldUpdateOperationsInput | number
-    info?: JsonNullValueInput | InputJsonValue
+    departure?: StringFieldUpdateOperationsInput | string
+    destination?: StringFieldUpdateOperationsInput | string
+    departureAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    arrivalAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FlightUncheckedUpdateManyInput = {
     id?: StringFieldUpdateOperationsInput | string
     price?: IntFieldUpdateOperationsInput | number
     companyId?: StringFieldUpdateOperationsInput | string
-    info?: JsonNullValueInput | InputJsonValue
+    departure?: StringFieldUpdateOperationsInput | string
+    destination?: StringFieldUpdateOperationsInput | string
+    departureAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    arrivalAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserCreateInput = {
@@ -7860,39 +7912,27 @@ export namespace Prisma {
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
   }
-  export type JsonFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonFilterBase<$PrismaModel>>, 'path'>>
 
-  export type JsonFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  export type DateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
+  export type CompanyScalarRelationFilter = {
+    is?: CompanyWhereInput
+    isNot?: CompanyWhereInput
   }
 
   export type UserListRelationFilter = {
     every?: UserWhereInput
     some?: UserWhereInput
     none?: UserWhereInput
-  }
-
-  export type CompanyScalarRelationFilter = {
-    is?: CompanyWhereInput
-    isNot?: CompanyWhereInput
   }
 
   export type UserOrderByRelationAggregateInput = {
@@ -7903,7 +7943,10 @@ export namespace Prisma {
     id?: SortOrder
     price?: SortOrder
     companyId?: SortOrder
-    info?: SortOrder
+    departure?: SortOrder
+    destination?: SortOrder
+    departureAt?: SortOrder
+    arrivalAt?: SortOrder
   }
 
   export type FlightAvgOrderByAggregateInput = {
@@ -7914,12 +7957,20 @@ export namespace Prisma {
     id?: SortOrder
     price?: SortOrder
     companyId?: SortOrder
+    departure?: SortOrder
+    destination?: SortOrder
+    departureAt?: SortOrder
+    arrivalAt?: SortOrder
   }
 
   export type FlightMinOrderByAggregateInput = {
     id?: SortOrder
     price?: SortOrder
     companyId?: SortOrder
+    departure?: SortOrder
+    destination?: SortOrder
+    departureAt?: SortOrder
+    arrivalAt?: SortOrder
   }
 
   export type FlightSumOrderByAggregateInput = {
@@ -7941,31 +7992,19 @@ export namespace Prisma {
     _min?: NestedIntFilter<$PrismaModel>
     _max?: NestedIntFilter<$PrismaModel>
   }
-  export type JsonWithAggregatesFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
-        Required<JsonWithAggregatesFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>
 
-  export type JsonWithAggregatesFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
     _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedJsonFilter<$PrismaModel>
-    _max?: NestedJsonFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type StringNullableFilter<$PrismaModel = never> = {
@@ -8000,17 +8039,6 @@ export namespace Prisma {
     in?: $Enums.AuthMethod[] | ListEnumAuthMethodFieldRefInput<$PrismaModel>
     notIn?: $Enums.AuthMethod[] | ListEnumAuthMethodFieldRefInput<$PrismaModel>
     not?: NestedEnumAuthMethodFilter<$PrismaModel> | $Enums.AuthMethod
-  }
-
-  export type DateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type AccountListRelationFilter = {
@@ -8114,20 +8142,6 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedEnumAuthMethodFilter<$PrismaModel>
     _max?: NestedEnumAuthMethodFilter<$PrismaModel>
-  }
-
-  export type DateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type UserNullableScalarRelationFilter = {
@@ -8269,16 +8283,16 @@ export namespace Prisma {
     deleteMany?: FlightScalarWhereInput | FlightScalarWhereInput[]
   }
 
-  export type UserCreateNestedManyWithoutFlightsInput = {
-    create?: XOR<UserCreateWithoutFlightsInput, UserUncheckedCreateWithoutFlightsInput> | UserCreateWithoutFlightsInput[] | UserUncheckedCreateWithoutFlightsInput[]
-    connectOrCreate?: UserCreateOrConnectWithoutFlightsInput | UserCreateOrConnectWithoutFlightsInput[]
-    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
-  }
-
   export type CompanyCreateNestedOneWithoutFlightsInput = {
     create?: XOR<CompanyCreateWithoutFlightsInput, CompanyUncheckedCreateWithoutFlightsInput>
     connectOrCreate?: CompanyCreateOrConnectWithoutFlightsInput
     connect?: CompanyWhereUniqueInput
+  }
+
+  export type UserCreateNestedManyWithoutFlightsInput = {
+    create?: XOR<UserCreateWithoutFlightsInput, UserUncheckedCreateWithoutFlightsInput> | UserCreateWithoutFlightsInput[] | UserUncheckedCreateWithoutFlightsInput[]
+    connectOrCreate?: UserCreateOrConnectWithoutFlightsInput | UserCreateOrConnectWithoutFlightsInput[]
+    connect?: UserWhereUniqueInput | UserWhereUniqueInput[]
   }
 
   export type UserUncheckedCreateNestedManyWithoutFlightsInput = {
@@ -8295,6 +8309,18 @@ export namespace Prisma {
     divide?: number
   }
 
+  export type DateTimeFieldUpdateOperationsInput = {
+    set?: Date | string
+  }
+
+  export type CompanyUpdateOneRequiredWithoutFlightsNestedInput = {
+    create?: XOR<CompanyCreateWithoutFlightsInput, CompanyUncheckedCreateWithoutFlightsInput>
+    connectOrCreate?: CompanyCreateOrConnectWithoutFlightsInput
+    upsert?: CompanyUpsertWithoutFlightsInput
+    connect?: CompanyWhereUniqueInput
+    update?: XOR<XOR<CompanyUpdateToOneWithWhereWithoutFlightsInput, CompanyUpdateWithoutFlightsInput>, CompanyUncheckedUpdateWithoutFlightsInput>
+  }
+
   export type UserUpdateManyWithoutFlightsNestedInput = {
     create?: XOR<UserCreateWithoutFlightsInput, UserUncheckedCreateWithoutFlightsInput> | UserCreateWithoutFlightsInput[] | UserUncheckedCreateWithoutFlightsInput[]
     connectOrCreate?: UserCreateOrConnectWithoutFlightsInput | UserCreateOrConnectWithoutFlightsInput[]
@@ -8306,14 +8332,6 @@ export namespace Prisma {
     update?: UserUpdateWithWhereUniqueWithoutFlightsInput | UserUpdateWithWhereUniqueWithoutFlightsInput[]
     updateMany?: UserUpdateManyWithWhereWithoutFlightsInput | UserUpdateManyWithWhereWithoutFlightsInput[]
     deleteMany?: UserScalarWhereInput | UserScalarWhereInput[]
-  }
-
-  export type CompanyUpdateOneRequiredWithoutFlightsNestedInput = {
-    create?: XOR<CompanyCreateWithoutFlightsInput, CompanyUncheckedCreateWithoutFlightsInput>
-    connectOrCreate?: CompanyCreateOrConnectWithoutFlightsInput
-    upsert?: CompanyUpsertWithoutFlightsInput
-    connect?: CompanyWhereUniqueInput
-    update?: XOR<XOR<CompanyUpdateToOneWithWhereWithoutFlightsInput, CompanyUpdateWithoutFlightsInput>, CompanyUncheckedUpdateWithoutFlightsInput>
   }
 
   export type UserUncheckedUpdateManyWithoutFlightsNestedInput = {
@@ -8369,10 +8387,6 @@ export namespace Prisma {
 
   export type EnumAuthMethodFieldUpdateOperationsInput = {
     set?: $Enums.AuthMethod
-  }
-
-  export type DateTimeFieldUpdateOperationsInput = {
-    set?: Date | string
   }
 
   export type FlightUpdateManyWithoutPassengersNestedInput = {
@@ -8491,6 +8505,17 @@ export namespace Prisma {
     not?: NestedIntFilter<$PrismaModel> | number
   }
 
+  export type NestedDateTimeFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
+  }
+
   export type NestedIntWithAggregatesFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel>
     in?: number[] | ListIntFieldRefInput<$PrismaModel>
@@ -8517,28 +8542,19 @@ export namespace Prisma {
     gte?: number | FloatFieldRefInput<$PrismaModel>
     not?: NestedFloatFilter<$PrismaModel> | number
   }
-  export type NestedJsonFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
-        Required<NestedJsonFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
 
-  export type NestedJsonFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
-    path?: string[]
-    mode?: QueryMode | EnumQueryModeFieldRefInput<$PrismaModel>
-    string_contains?: string | StringFieldRefInput<$PrismaModel>
-    string_starts_with?: string | StringFieldRefInput<$PrismaModel>
-    string_ends_with?: string | StringFieldRefInput<$PrismaModel>
-    array_starts_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_ends_with?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    array_contains?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | null
-    lt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    lte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gt?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    gte?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel> | JsonNullValueFilter
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type NestedStringNullableFilter<$PrismaModel = never> = {
@@ -8572,17 +8588,6 @@ export namespace Prisma {
     in?: $Enums.AuthMethod[] | ListEnumAuthMethodFieldRefInput<$PrismaModel>
     notIn?: $Enums.AuthMethod[] | ListEnumAuthMethodFieldRefInput<$PrismaModel>
     not?: NestedEnumAuthMethodFilter<$PrismaModel> | $Enums.AuthMethod
-  }
-
-  export type NestedDateTimeFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeFilter<$PrismaModel> | Date | string
   }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -8641,20 +8646,6 @@ export namespace Prisma {
     _max?: NestedEnumAuthMethodFilter<$PrismaModel>
   }
 
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
-  }
-
   export type NestedEnumTokenTypeFilter<$PrismaModel = never> = {
     equals?: $Enums.TokenType | EnumTokenTypeFieldRefInput<$PrismaModel>
     in?: $Enums.TokenType[] | ListEnumTokenTypeFieldRefInput<$PrismaModel>
@@ -8675,14 +8666,20 @@ export namespace Prisma {
   export type FlightCreateWithoutCompanyInput = {
     id?: string
     price: number
-    info: JsonNullValueInput | InputJsonValue
+    departure: string
+    destination: string
+    departureAt: Date | string
+    arrivalAt: Date | string
     passengers?: UserCreateNestedManyWithoutFlightsInput
   }
 
   export type FlightUncheckedCreateWithoutCompanyInput = {
     id?: string
     price: number
-    info: JsonNullValueInput | InputJsonValue
+    departure: string
+    destination: string
+    departureAt: Date | string
+    arrivalAt: Date | string
     passengers?: UserUncheckedCreateNestedManyWithoutFlightsInput
   }
 
@@ -8719,7 +8716,27 @@ export namespace Prisma {
     id?: StringFilter<"Flight"> | string
     price?: IntFilter<"Flight"> | number
     companyId?: StringFilter<"Flight"> | string
-    info?: JsonFilter<"Flight">
+    departure?: StringFilter<"Flight"> | string
+    destination?: StringFilter<"Flight"> | string
+    departureAt?: DateTimeFilter<"Flight"> | Date | string
+    arrivalAt?: DateTimeFilter<"Flight"> | Date | string
+  }
+
+  export type CompanyCreateWithoutFlightsInput = {
+    id?: string
+    logo: string
+    name: string
+  }
+
+  export type CompanyUncheckedCreateWithoutFlightsInput = {
+    id?: string
+    logo: string
+    name: string
+  }
+
+  export type CompanyCreateOrConnectWithoutFlightsInput = {
+    where: CompanyWhereUniqueInput
+    create: XOR<CompanyCreateWithoutFlightsInput, CompanyUncheckedCreateWithoutFlightsInput>
   }
 
   export type UserCreateWithoutFlightsInput = {
@@ -8757,21 +8774,27 @@ export namespace Prisma {
     create: XOR<UserCreateWithoutFlightsInput, UserUncheckedCreateWithoutFlightsInput>
   }
 
-  export type CompanyCreateWithoutFlightsInput = {
-    id?: string
-    logo: string
-    name: string
-  }
-
-  export type CompanyUncheckedCreateWithoutFlightsInput = {
-    id?: string
-    logo: string
-    name: string
-  }
-
-  export type CompanyCreateOrConnectWithoutFlightsInput = {
-    where: CompanyWhereUniqueInput
+  export type CompanyUpsertWithoutFlightsInput = {
+    update: XOR<CompanyUpdateWithoutFlightsInput, CompanyUncheckedUpdateWithoutFlightsInput>
     create: XOR<CompanyCreateWithoutFlightsInput, CompanyUncheckedCreateWithoutFlightsInput>
+    where?: CompanyWhereInput
+  }
+
+  export type CompanyUpdateToOneWithWhereWithoutFlightsInput = {
+    where?: CompanyWhereInput
+    data: XOR<CompanyUpdateWithoutFlightsInput, CompanyUncheckedUpdateWithoutFlightsInput>
+  }
+
+  export type CompanyUpdateWithoutFlightsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    logo?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
+  }
+
+  export type CompanyUncheckedUpdateWithoutFlightsInput = {
+    id?: StringFieldUpdateOperationsInput | string
+    logo?: StringFieldUpdateOperationsInput | string
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type UserUpsertWithWhereUniqueWithoutFlightsInput = {
@@ -8807,33 +8830,13 @@ export namespace Prisma {
     updatedAt?: DateTimeFilter<"User"> | Date | string
   }
 
-  export type CompanyUpsertWithoutFlightsInput = {
-    update: XOR<CompanyUpdateWithoutFlightsInput, CompanyUncheckedUpdateWithoutFlightsInput>
-    create: XOR<CompanyCreateWithoutFlightsInput, CompanyUncheckedCreateWithoutFlightsInput>
-    where?: CompanyWhereInput
-  }
-
-  export type CompanyUpdateToOneWithWhereWithoutFlightsInput = {
-    where?: CompanyWhereInput
-    data: XOR<CompanyUpdateWithoutFlightsInput, CompanyUncheckedUpdateWithoutFlightsInput>
-  }
-
-  export type CompanyUpdateWithoutFlightsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    logo?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-  }
-
-  export type CompanyUncheckedUpdateWithoutFlightsInput = {
-    id?: StringFieldUpdateOperationsInput | string
-    logo?: StringFieldUpdateOperationsInput | string
-    name?: StringFieldUpdateOperationsInput | string
-  }
-
   export type FlightCreateWithoutPassengersInput = {
     id?: string
     price: number
-    info: JsonNullValueInput | InputJsonValue
+    departure: string
+    destination: string
+    departureAt: Date | string
+    arrivalAt: Date | string
     company: CompanyCreateNestedOneWithoutFlightsInput
   }
 
@@ -8841,7 +8844,10 @@ export namespace Prisma {
     id?: string
     price: number
     companyId: string
-    info: JsonNullValueInput | InputJsonValue
+    departure: string
+    destination: string
+    departureAt: Date | string
+    arrivalAt: Date | string
   }
 
   export type FlightCreateOrConnectWithoutPassengersInput = {
@@ -9007,27 +9013,39 @@ export namespace Prisma {
   export type FlightCreateManyCompanyInput = {
     id?: string
     price: number
-    info: JsonNullValueInput | InputJsonValue
+    departure: string
+    destination: string
+    departureAt: Date | string
+    arrivalAt: Date | string
   }
 
   export type FlightUpdateWithoutCompanyInput = {
     id?: StringFieldUpdateOperationsInput | string
     price?: IntFieldUpdateOperationsInput | number
-    info?: JsonNullValueInput | InputJsonValue
+    departure?: StringFieldUpdateOperationsInput | string
+    destination?: StringFieldUpdateOperationsInput | string
+    departureAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    arrivalAt?: DateTimeFieldUpdateOperationsInput | Date | string
     passengers?: UserUpdateManyWithoutFlightsNestedInput
   }
 
   export type FlightUncheckedUpdateWithoutCompanyInput = {
     id?: StringFieldUpdateOperationsInput | string
     price?: IntFieldUpdateOperationsInput | number
-    info?: JsonNullValueInput | InputJsonValue
+    departure?: StringFieldUpdateOperationsInput | string
+    destination?: StringFieldUpdateOperationsInput | string
+    departureAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    arrivalAt?: DateTimeFieldUpdateOperationsInput | Date | string
     passengers?: UserUncheckedUpdateManyWithoutFlightsNestedInput
   }
 
   export type FlightUncheckedUpdateManyWithoutCompanyInput = {
     id?: StringFieldUpdateOperationsInput | string
     price?: IntFieldUpdateOperationsInput | number
-    info?: JsonNullValueInput | InputJsonValue
+    departure?: StringFieldUpdateOperationsInput | string
+    destination?: StringFieldUpdateOperationsInput | string
+    departureAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    arrivalAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type UserUpdateWithoutFlightsInput = {
@@ -9088,7 +9106,10 @@ export namespace Prisma {
   export type FlightUpdateWithoutPassengersInput = {
     id?: StringFieldUpdateOperationsInput | string
     price?: IntFieldUpdateOperationsInput | number
-    info?: JsonNullValueInput | InputJsonValue
+    departure?: StringFieldUpdateOperationsInput | string
+    destination?: StringFieldUpdateOperationsInput | string
+    departureAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    arrivalAt?: DateTimeFieldUpdateOperationsInput | Date | string
     company?: CompanyUpdateOneRequiredWithoutFlightsNestedInput
   }
 
@@ -9096,14 +9117,20 @@ export namespace Prisma {
     id?: StringFieldUpdateOperationsInput | string
     price?: IntFieldUpdateOperationsInput | number
     companyId?: StringFieldUpdateOperationsInput | string
-    info?: JsonNullValueInput | InputJsonValue
+    departure?: StringFieldUpdateOperationsInput | string
+    destination?: StringFieldUpdateOperationsInput | string
+    departureAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    arrivalAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type FlightUncheckedUpdateManyWithoutPassengersInput = {
     id?: StringFieldUpdateOperationsInput | string
     price?: IntFieldUpdateOperationsInput | number
     companyId?: StringFieldUpdateOperationsInput | string
-    info?: JsonNullValueInput | InputJsonValue
+    departure?: StringFieldUpdateOperationsInput | string
+    destination?: StringFieldUpdateOperationsInput | string
+    departureAt?: DateTimeFieldUpdateOperationsInput | Date | string
+    arrivalAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
 
   export type AccountUpdateWithoutUserInput = {

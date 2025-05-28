@@ -39,13 +39,13 @@ export class FlightService {
 		return this.prismaService.flight.create({
 			data: {
 				price: dto.price,
-				info: dto.info,
 				company: {
 					connect: { id: dto.companyId },
 				},
-			},
-			include: {
-				company: true,
+				departure: dto.departure,
+				destination: dto.destination,
+				departureAt: dto.departureAt,
+				arrivalAt: dto.arrivalAt,
 			},
 		});
 	}
@@ -57,8 +57,11 @@ export class FlightService {
 			where: { id },
 			data: {
 				price: dto.price,
-				info: dto.info,
 				companyId: dto.companyId,
+				departure: dto.departure,
+				destination: dto.destination,
+				departureAt: dto.departureAt,
+				arrivalAt: dto.arrivalAt,
 			},
 			include: {
 				company: true,

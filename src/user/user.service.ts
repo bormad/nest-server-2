@@ -4,47 +4,59 @@ import { hash } from 'argon2';
 
 import { PrismaService } from '@/prisma/prisma.service';
 
+import { BookingFlyDto } from './dto/booking-fly.dto';
 import { UpdateUserByAdminDto } from './dto/update-user-by-admin.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 
 @Injectable()
 export class UserService {
-	public constructor(private readonly prismaService: PrismaService) {}
+	constructor(private readonly prismaService: PrismaService) {}
 
 	public async findAll() {
-		const users = await this.prismaService.user.findMany({
+		return this.prismaService.user.findMany({
 			include: {
 				accounts: true,
 			},
 		});
-
-		return users;
 	}
 
 	public async findById(id: string) {
 		const user = await this.prismaService.user.findUnique({
-			where: {
-				id,
-			},
+			where: { id },
 			include: {
 				accounts: true,
 			},
 		});
 
 		if (!user) {
-			throw new NotFoundException(
-				'Пользователь не найден. Пожалуйста, проверьте введенные данные.',
-			);
+			throw new NotFoundException('Пользователь не найден.');
 		}
 
 		return user;
 	}
 
+	public async bookFlight(userId: string, dto: BookingFlyDto) {
+		const flight = await this.prismaService.flight.findUnique({
+			where: { id: dto.flightId },
+		});
+
+		if (!flight) {
+			throw new NotFoundException('Рейс не найден.');
+		}
+
+		return this.prismaService.user.update({
+			where: { id: userId },
+			data: {
+				flights: {
+					connect: { id: dto.flightId },
+				},
+			},
+		});
+	}
+
 	public async findByEmail(email: string) {
 		const user = await this.prismaService.user.findUnique({
-			where: {
-				email,
-			},
+			where: { email },
 			include: {
 				accounts: true,
 			},
@@ -82,9 +94,7 @@ export class UserService {
 		const user = await this.findById(userId);
 
 		const updatedUser = await this.prismaService.user.update({
-			where: {
-				id: user.id,
-			},
+			where: { id: user.id },
 			data: {
 				email: dto.email,
 				displayName: dto.name,
@@ -99,9 +109,7 @@ export class UserService {
 		const user = await this.findById(id);
 
 		const updatedUser = await this.prismaService.user.update({
-			where: {
-				id: user.id,
-			},
+			where: { id: user.id },
 			data: {
 				email: dto.email,
 				displayName: dto.name,
@@ -117,9 +125,7 @@ export class UserService {
 	public async delete(id: string) {
 		await this.findById(id);
 		await this.prismaService.user.delete({
-			where: {
-				id,
-			},
+			where: { id },
 		});
 	}
 }

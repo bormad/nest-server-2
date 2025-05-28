@@ -1,15 +1,30 @@
-import { IsInt, IsNotEmpty, IsObject, IsString } from 'class-validator';
+import { Transform } from 'class-transformer';
+import { IsDate, IsInt, IsNotEmpty, IsString } from 'class-validator';
 
 export class CreateFlightDto {
 	@IsInt()
 	@IsNotEmpty()
 	price: number;
 
-	@IsObject()
-	@IsNotEmpty()
-	info: Record<string, any>;
-
 	@IsString()
 	@IsNotEmpty()
 	companyId: string;
+
+	@IsString()
+	@IsNotEmpty()
+	departure: string;
+
+	@IsString()
+	@IsNotEmpty()
+	destination: string;
+
+	@Transform(({ value }) => new Date(value))
+	@IsDate()
+	@IsNotEmpty()
+	departureAt: Date;
+
+	@Transform(({ value }) => new Date(value))
+	@IsDate()
+	@IsNotEmpty()
+	arrivalAt: Date;
 }

@@ -18,13 +18,16 @@ model Company {
 }
 
 model Flight {
-  id        String  @id @default(uuid())
-  price     Int
-  companyId String
-  info      Json
-  passengers User[] @relation("passengers")
-  company   Company @relation(fields: [companyId], references: [id])
-
+  id          String  @id @default(uuid())
+  price       Int
+  companyId   String
+  company     Company @relation(fields: [companyId], references: [id])
+  departure   String 
+  destination String 
+  departureAt DateTime
+  arrivalAt   DateTime
+  passengers  User[]  @relation("passengers")
+  
   @@map("flights")
 }
 

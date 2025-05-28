@@ -7,12 +7,14 @@ import {
 	HttpStatus,
 	Param,
 	Patch,
+	Post,
 } from '@nestjs/common';
 import { UserRole } from '@prisma/__generated__';
 
 import { Authorization } from '@/auth/decorators/auth.decorator';
 import { Authorized } from '@/auth/decorators/authorized.decorator';
 
+import { BookingFlyDto } from './dto/booking-fly.dto';
 import { UpdateUserByAdminDto } from './dto/update-user-by-admin.dto';
 import { UpdateUserDto } from './dto/update-user.dto';
 import { UserService } from './user.service';
@@ -60,6 +62,16 @@ export class UserController {
 		@Body() dto: UpdateUserByAdminDto,
 	) {
 		return this.userService.updateByAdmin(id, dto);
+	}
+
+	@Authorization()
+	@Post('/:userId/book-flight')
+	@HttpCode(HttpStatus.CREATED)
+	public async bookFlight(
+		@Param('userId') userId: string,
+		@Body() dto: BookingFlyDto,
+	) {
+		return this.userService.bookFlight(userId, dto);
 	}
 
 	@Authorization(UserRole.ADMIN)

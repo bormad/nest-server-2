@@ -1,4 +1,4 @@
-import { IsInt, IsObject, IsOptional, IsString } from 'class-validator';
+import { IsDate, IsInt, IsOptional, IsString } from 'class-validator';
 
 export class UpdateFlightDto {
 	@IsOptional()
@@ -6,10 +6,22 @@ export class UpdateFlightDto {
 	price?: number;
 
 	@IsOptional()
-	@IsObject()
-	info?: Record<string, any>;
+	@IsString()
+	companyId?: string;
 
 	@IsOptional()
 	@IsString()
-	companyId?: string;
+	departure?: string;
+
+	@IsOptional()
+	@IsString()
+	destination?: string;
+
+	@IsOptional()
+	@IsDate()
+	departureAt?: Date;
+
+	@IsOptional()
+	@IsDate()
+	arrivalAt?: Date;
 }
